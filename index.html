@@ -7,16 +7,66 @@
     <link href="./src/output.css" rel="stylesheet">
     <title> San Pokédex </title>
 </head>
-<body class="bg-[#505050] py-7 px-20">
+<body class="bg-[#505050] sm:py-7 sm:px-30 xs:py-7 xs:px-10 xxs:py-7 xxs:px-3">
 
     <div class="font-['Inter'] font-semibold text-white mb-20"> 
         <p> SAN-POKEDEX </p>
     </div>
     
-    <div>
-        <input class="rounded-xl focus:border-blue-100 w-96" type="text" placeholder="search">
-        <button class="bg-white p-3 rounded-xl"> Search </button>
-        <button> Randomize </button>
+    <div class="grid lg:grid-cols-2 sm:grid-cols-1  gap-20">
+        <div class="flex-row-1">
+            <div class="flex items-center gap-1 mb-10">
+                <input id="searchPokemon" class="rounded-xl focus:border-blue-100 w-[100%]" type="text" placeholder="search">
+                <button class="bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] p-2 rounded-xl ">
+                    <img class="max-w-7" src="./assets/search-icon.png" alt="Search Icon, Magnifiying Glass">
+                </button>
+                <button class="bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] p-2 rounded-xl">
+                    <img class="max-w-7" src="./assets/randomize-icon.png" alt="Randomize Icon">
+                </button>
+            </div>
+
+            <div class="bg-[#D9D9D940] rounded-2xl max-w-[100%] min-h-[450px] flex justify-center items-center mb-15">
+                <div>
+                    <p> IMAGE </p>
+                </div>
+            </div>
+            <div class="flex justify-center items-center max-w-[100%]">
+                <h1 class="font-['Inter'] font-bold text-white text-2xl"> NAME </h1>
+            </div>
+        </div>
+
+        <div>
+            <div class="flex gap-1 mb-9">
+                <button class="flex bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] rounded-xl w-[75%] p-2 justify-center">
+                    <img class="max-w-7" src="./assets/red-pokeball-icon.png" alt="Red Poke Ball Icon">
+                </button>
+                <button class="flex bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] rounded-xl w-[25%] p-2 justify-center">
+                    <img class="max-w-7" src="./assets/nightmode-icon.png" alt="Night Mode Icon">
+                </button>
+            </div>
+
+            <div class="font-['Inter'] text-white mb-10">
+                <div class="flex gap-2">
+                <p class="font-bold text-xl"> Element Type: </p>
+                <p class="text-xl"> Element </p>
+                </div>
+                <div class="flex gap-2">
+                <p class="font-bold text-xl"> Location: </p>
+                <p class="text-xl"> Place </p>
+                </div>
+            </div>
+
+            <div class="flex flex-col font-['Inter'] font-bold text-xl text-black gap-2 mb-10">
+                <button class="bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] w-100% p-2 rounded-xl"> ABILITIES </button>
+                <button class="bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] w-100% p-2 rounded-xl"> MOVES </button>
+            </div>
+
+            <div class="flex font-['Inter'] text-white">
+                <p class="font-bold text-xl mb-5"> Evolution: </p>
+
+                
+            </div>
+        </div>
     </div>
 
 
