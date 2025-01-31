@@ -7,68 +7,113 @@
     <link href="./src/output.css" rel="stylesheet">
     <title> San Pokédex </title>
 </head>
-<body class="bg-[#505050] sm:py-7 sm:px-30 xs:py-7 xs:px-10 xxs:py-7 xxs:px-3">
+<body class="bg-[#808080] sm:py-7 sm:px-30 xs:py-7 xs:px-10 xxs:py-7 xxs:px-3">
 
-    <div class="font-['Inter'] font-semibold text-white mb-20"> 
+    <div class="font-['Inter'] font-normal text-white mb-20"> 
         <p> SAN-POKEDEX </p>
     </div>
     
     <div class="grid lg:grid-cols-2 sm:grid-cols-1  gap-20">
         <div class="flex-row-1">
             <div class="flex items-center gap-1 mb-10">
-                <input id="searchPokemon" class="rounded-xl focus:border-blue-100 w-[100%]" type="text" placeholder="search">
-                <button class="bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] p-2 rounded-xl ">
+                <input id="searchInput" class="rounded-xl focus:border-0 border-0 w-[100%]" type="text" placeholder="search">
+                <button id="searchBtn" class="bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] p-2 rounded-xl ">
                     <img class="max-w-7" src="./assets/search-icon.png" alt="Search Icon, Magnifiying Glass">
                 </button>
-                <button class="bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] p-2 rounded-xl">
+                <button id="randomizeBtn" class="bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] p-2 rounded-xl">
                     <img class="max-w-7" src="./assets/randomize-icon.png" alt="Randomize Icon">
                 </button>
             </div>
 
-            <div class="bg-[#D9D9D940] rounded-2xl max-w-[100%] min-h-[450px] flex justify-center items-center mb-15">
-                <div>
-                    <p> IMAGE </p>
+            <div class="bg-[#D9D9D940] rounded-2xl max-w-[100%] min-h-[450px] flex justify-center items-center mb-15 relative">
+                <div id="pokemonImage">
+
+                </div>
+                <div class="absolute bottom-[0%] left-[0%] px-10 py-5">
+                    <button id="shinyFormBtn"><img class="w-[25px] mr-1 hover:brightness-90 active:brightness-75" src="./assets/shinystar-icon.png" alt="Shiny Star Button"></button>
+                    <button id="addToFavoritesBtn"><img class="w-[25px] hover:brightness-90 active:brightness-75" src="./assets/pokeball-icon.png" alt="Pokeball Icon"></button>
                 </div>
             </div>
             <div class="flex justify-center items-center max-w-[100%]">
-                <h1 class="font-['Inter'] font-bold text-white text-2xl"> NAME </h1>
+                <h1 id="pokemonName" class="font-['Inter'] font-bold text-white text-2xl"> NAME </h1>
             </div>
         </div>
 
-        <div>
+        <div class="relative">
             <div class="flex gap-1 mb-9">
-                <button class="flex bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] rounded-xl w-[75%] p-2 justify-center">
+                <button id="pokemonFavorites" class="flex bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] rounded-xl w-[75%] p-2 justify-center">
                     <img class="max-w-7" src="./assets/red-pokeball-icon.png" alt="Red Poke Ball Icon">
                 </button>
-                <button class="flex bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] rounded-xl w-[25%] p-2 justify-center">
+                <button id="nightAndDayMode" class="flex bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] rounded-xl w-[25%] p-2 justify-center">
                     <img class="max-w-7" src="./assets/nightmode-icon.png" alt="Night Mode Icon">
                 </button>
+            </div>
+
+            <!-- Favorites Popup -->
+            <div id="favoritesPopup" class="bg-white absolute top-[0%] translate-[-50%,-50%] lg:w-[100%] lg:h-[100%] xxs:w-[100%] xxs:h-[125%] rounded-xl shadow-[1px_2px_2px_0px_#2d3748] hidden">
+                <div class="font-['Inter'] font-semibold text-xl p-10 flex justify-between">
+                    <p> Favorites: </p>
+                    <button id="closeFavoritesPopup" class="hover:brightness-95 active:brightness-75">
+                        <img class="w-[25px]" src="./assets/close.png" alt="Red Close Button Icon">
+                    </button>
+                </div>
+                <div class="bg-[#dddddd] font-['Inter'] text-xl rounded-xl overflow-y-scroll m-10 h-[70%] p-10">
+
+                </div>
             </div>
 
             <div class="font-['Inter'] text-white mb-10">
                 <div class="flex gap-2">
                 <p class="font-bold text-xl"> Element Type: </p>
-                <p class="text-xl"> Element </p>
+                <p id="elementDisplay" class="text-xl"> Element </p>
                 </div>
                 <div class="flex gap-2">
                 <p class="font-bold text-xl"> Location: </p>
-                <p class="text-xl"> Place </p>
+                <p id="locationDisplay" class="text-xl"> Place </p>
                 </div>
             </div>
 
             <div class="flex flex-col font-['Inter'] font-bold text-xl text-black gap-2 mb-10">
-                <button class="bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] w-100% p-2 rounded-xl"> ABILITIES </button>
-                <button class="bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] w-100% p-2 rounded-xl"> MOVES </button>
+                <button id="abilitiesBtn" class="bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] w-100% p-2 rounded-xl"> ABILITIES </button>
+                <button id="movesBtn" class="bg-white hover:bg-[#e5e5e5] active:bg-[#c3c3c3] w-100% p-2 rounded-xl"> MOVES </button>
+            </div>
+
+            <!-- Abilities Popup -->
+            <div id="abilitiesPopup" class="bg-white absolute top-[0%] translate-[-50%,-50%] lg:w-[100%] lg:h-[100%] xxs:w-[100%] xxs:h-[125%] rounded-xl shadow-[1px_2px_2px_0px_#2d3748] hidden">
+                <div class="font-['Inter'] font-semibold text-xl p-10 flex justify-between">
+                    <p> Abilities: </p>
+                    <button id="closeAbilitiesPopup" class="hover:brightness-95 active:brightness-75">
+                        <img class="w-[25px]" src="./assets/close.png" alt="Red Close Button Icon">
+                    </button>
+                </div>
+                <div class="bg-[#dddddd] font-['Inter'] text-xl rounded-xl overflow-y-scroll m-10 h-[70%] p-10">
+                    <p> </p>
+                </div>
+            </div>
+
+            <!-- Moves Popup -->
+            <div id="movesPopup" class="bg-white absolute top-[0%] translate-[-50%,-50%] lg:w-[100%] lg:h-[100%] xxs:w-[100%] xxs:h-[125%] rounded-xl shadow-[1px_2px_2px_0px_#2d3748] hidden">
+                <div class="font-['Inter'] font-semibold text-xl p-10 flex justify-between">
+                    <p> Moves: </p>
+                    <button id="closeMovesPopup" class="hover:brightness-95 active:brightness-75">
+                        <img class="w-[25px]" src="./assets/close.png" alt="Red Close Button Icon">
+                    </button>
+                </div>
+                <div class="bg-[#dddddd] font-['Inter'] text-xl rounded-xl overflow-y-scroll m-10 h-[70%] p-10">
+                    <p> </p>
+                </div>
             </div>
 
             <div class="flex font-['Inter'] text-white">
                 <p class="font-bold text-xl mb-5"> Evolution: </p>
-
-                
+            </div>
+            <div id="evoContainer" class="flex w-[100%] lg:h-[27.5%] sm:h-[50%] xxs:h-[50%] gap-1 justify-center mb-10">
+                <div class="bg-[#D9D9D940] w-[33.33%] rounded-xl"></div>
+                <div class="bg-[#D9D9D940] w-[33.33%] rounded-xl"></div>
+                <div class="bg-[#D9D9D940] w-[33.33%] rounded-xl"></div>
             </div>
         </div>
     </div>
-
 
 
     <script src="./scripts/app.js"></script>
